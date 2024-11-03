@@ -10,15 +10,11 @@ import {Router} from '@angular/router';
 })
 export class TaskAddComponent {
 
-  /**
-   * Task title form field
-   */
   title = new FormControl('',Validators.required);
 
-  /**
-   *  Task note form field
-   */
   note = new FormControl('');
+  status = new FormControl('Incomplete');
+
 
   constructor(private storage: TaskStorageService, private router: Router) {
   }
@@ -27,9 +23,10 @@ export class TaskAddComponent {
    * Create a task a redirect to the todo list
    */
   createTask() { 
+    debugger
     if(
       this.title.valid){
-        this.storage.add(this.title.value, this.note.value);
+        this.storage.add(this.title.value, this.note.value, this.status.value);
         this.router.navigate(['/tasks'])    
       }
   }

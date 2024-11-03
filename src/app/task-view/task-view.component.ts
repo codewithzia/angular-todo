@@ -12,7 +12,9 @@ export class TaskViewComponent implements OnInit {
 
   task: Task;
 
-  constructor(private storage: TaskStorageService, private route: ActivatedRoute, private router: Router) {
+  constructor(private storage: TaskStorageService, 
+    private route: ActivatedRoute, 
+    private router: Router) {
   }
 
   /**

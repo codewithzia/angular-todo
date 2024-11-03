@@ -10,27 +10,17 @@ export class TaskStorageService {
 
   tasks: Task[] = [];
 
-  /**
-   * Whether data have already been loaded from storage
-   */
   initialized: boolean = false;
 
   constructor() {
   }
 
-  /**
-   * Returns all tasks
-   */
   getTasks(): Task[] {
     this.init();
     return this.tasks;
   }
 
-  /**
-   * Remove the tasks from the list
-   *
-   * @param index task index to remove
-   */
+
   delete(id) {
     let remaining_tasks: Task[] = [];
     for (let i = 0; i < this.tasks.length; i++) {
@@ -48,11 +38,7 @@ export class TaskStorageService {
     return true;
   }
 
-  /**
-   * Return the task based in the given id
-   *
-   * @param id
-   */
+
   get(id): Task {
 
     this.init();
@@ -69,25 +55,12 @@ export class TaskStorageService {
     return null;
   }
 
-  /**
-   * Create a new task based on the given data (+ generate a new id)
-   * @param title
-   * @param note
-   */
-  add(title, note) {
-    let task = new Task(title, note, this.getHighestId() + 1);
+  add(title, note,status) {
+    let task = new Task(title, note, this.getHighestId() + 1,status);
     this.tasks.push(task);
   }
 
-  /**
-   * Update the task and return it
-   *
-   * @param id
-   * @param title
-   * @param note
-   *
-   * @return Task
-   */
+
   update(id, title: string, note: string): Task {
 
     let task = this.get(id);
@@ -97,9 +70,6 @@ export class TaskStorageService {
     return task;
   }
 
-  /**
-   * Load tasks from json file
-   */
   init() {
     if (this.initialized) {
       console.log('Already initialized');
@@ -112,16 +82,15 @@ export class TaskStorageService {
         new Task(
           init_tasks[i]['title'],
           init_tasks[i]['note'],
-          init_tasks[i]['id'])
+          init_tasks[i]['id'],
+          init_tasks[i]['status'])
       );
     }
 
     this.initialized = true;
   }
 
-  /**
-   * Returns highest task id from our list.
-   */
+
   getHighestId(): number {
     let highest: number = 0;
     this.init();

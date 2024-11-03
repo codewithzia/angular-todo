@@ -13,7 +13,10 @@
     <label for="taskNote">Note</label>
     <input type="text" id="taskNote" class="form-control" [formControl]="note">
   </div>
-
+  <div class="form-group">
+    <label for="taskNote">Status</label>
+    <input disabled type="text" id="taskNote" class="form-control" [formControl]="status">
+  </div>
   <div class="form-group">
     <button (click)="createTask()" class="btn btn-primary">Create</button>
     <button class="btn btn-light" [routerLink]="['/tasks']">Back</button>

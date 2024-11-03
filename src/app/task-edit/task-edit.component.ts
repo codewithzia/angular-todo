@@ -12,24 +12,14 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class TaskEditComponent implements OnInit {
 
   task: Task;
-
-  /**
-   * Task id form field
-   */
   id;
-
-  /**
-   * Task title form field
-   */
   title = new FormControl('');
-
-  /**
-   *  Task note form field
-   */
   note = new FormControl('');
 
 
-  constructor(private storage: TaskStorageService, private route: ActivatedRoute, private router: Router) {
+  constructor(private storage: TaskStorageService, 
+    private route: ActivatedRoute, 
+    private router: Router) {
   }
 
   /**
